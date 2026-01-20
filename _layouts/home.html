@@ -2,57 +2,111 @@
 layout: default
 ---
 
-<div class="home-hero">
+<section class="hero">
   <div class="container">
-    <h1 class="hero-title">Welcome to Aqua Avenue</h1>
-    <p class="hero-subtitle">Exploring the intersection of technology, innovation, and creativity</p>
-    <div class="hero-cta">
-      <a href="{{ '/portfolio' | relative_url }}" class="btn btn-primary">View Projects</a>
-      <a href="{{ '/blog' | relative_url }}" class="btn btn-secondary">Read Blog</a>
-    </div>
-  </div>
-</div>
+    <h1>{{ page.hero_title | default: "Welcome to Aqua Avenue" }}</h1>
+    <p>{{ page.hero_subtitle | default: "Exploring the intersection of technology, innovation, and creativity" }}</p>
 
-<section class="featured-projects">
-  <div class="container">
-    <h2 class="section-title">Featured Projects</h2>
-    <div class="project-grid">
-      {% assign featured_projects = site.projects | where: "featured", true | limit: 3 %}
-      {% for project in featured_projects %}
-        <article class="project-card">
-          <h3 class="project-card-title">
-            <a href="{{ project.url | relative_url }}">{{ project.title }}</a>
-          </h3>
-          <p class="project-card-description">{{ project.description }}</p>
-          <div class="project-card-tech">
-            {% for tech in project.technologies %}
-              <span class="tech-tag">{{ tech }}</span>
-            {% endfor %}
-          </div>
-          <a href="{{ project.url | relative_url }}" class="project-card-link">Learn more →</a>
-        </article>
-      {% endfor %}
+    <div class="hero-actions">
+      <a class="btn primary" href="{{ '/portfolio/' | relative_url }}">View Projects</a>
+      <a class="btn" href="{{ '/blog/' | relative_url }}">Read Blog</a>
     </div>
   </div>
 </section>
 
-<section class="latest-posts">
+<!-- Modern stats strip -->
+<section class="section" style="padding-top: 0;">
   <div class="container">
-    <h2 class="section-title">Latest Posts</h2>
-    <div class="post-list">
-      {% for post in site.posts limit:3 %}
-        <article class="post-card">
-          <time class="post-card-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time>
-          <h3 class="post-card-title">
-            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-          </h3>
-          <p class="post-card-excerpt">{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
-          <a href="{{ post.url | relative_url }}" class="post-card-link">Read more →</a>
+    <div class="grid" style="grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px;">
+      <div class="card">
+        <div class="card-inner" style="padding: 22px 24px;">
+          <div style="font-weight: 900; font-size: 1.15rem; letter-spacing: -0.02em;">Modern Portfolio</div>
+          <div style="color: var(--muted); margin-top: 6px;">Projects, case studies, and results.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-inner" style="padding: 22px 24px;">
+          <div style="font-weight: 900; font-size: 1.15rem; letter-spacing: -0.02em;">Medium-Style Blog</div>
+          <div style="color: var(--muted); margin-top: 6px;">Clean reading experience + code.</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-inner" style="padding: 22px 24px;">
+          <div style="font-weight: 900; font-size: 1.15rem; letter-spacing: -0.02em;">Dark Mode</div>
+          <div style="color: var(--muted); margin-top: 6px;">Smooth toggle with persistence.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Projects -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Featured Projects</h2>
+
+    <div class="grid projects">
+      {% assign featured_projects = site.projects | sort: 'date' | reverse | slice: 0, 2 %}
+      {% for project in featured_projects %}
+        <article class="card">
+          <div class="card-inner">
+            <h3>
+              <a href="{{ project.url | relative_url }}">{{ project.title }}</a>
+            </h3>
+
+            {% if project.description %}
+              <p>{{ project.description }}</p>
+            {% else %}
+              <p>{{ project.excerpt | strip_html | truncate: 160 }}</p>
+            {% endif %}
+
+            {% if project.tech %}
+              <div class="tags">
+                {% for t in project.tech %}
+                  <span class="tag">{{ t }}</span>
+                {% endfor %}
+              </div>
+            {% endif %}
+
+            <a class="learn-more" href="{{ project.url | relative_url }}">
+              Learn more <span>→</span>
+            </a>
+          </div>
         </article>
       {% endfor %}
     </div>
-    <div class="view-all">
-      <a href="{{ '/blog' | relative_url }}" class="btn btn-outline">View All Posts</a>
+
+    <div style="text-align:center; margin-top: 26px;">
+      <a class="btn ghost" href="{{ '/portfolio/' | relative_url }}">View all projects →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Latest Posts -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Latest Posts</h2>
+
+    <div class="post-list">
+      {% assign latest_posts = site.posts | slice: 0, 3 %}
+      {% for post in latest_posts %}
+        <article class="post-item">
+          <div class="meta">{{ post.date | date: "%B %d, %Y" }}</div>
+          <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+          <p>{{ post.excerpt | strip_html | strip_newlines | truncate: 170 }}</p>
+          <div style="margin-top: 16px;">
+            <a class="learn-more" href="{{ post.url | relative_url }}">
+              Read more <span>→</span>
+            </a>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+
+    <div style="text-align:center; margin-top: 26px;">
+      <a class="btn ghost" href="{{ '/blog/' | relative_url }}">View all posts →</a>
     </div>
   </div>
 </section>
