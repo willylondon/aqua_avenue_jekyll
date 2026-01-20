@@ -1,24 +1,32 @@
-# =========================================
-# Aqua Avenue - Jekyll Configuration
-# GitHub Pages Project Site Setup
-# =========================================
+# Site settings
+title: Aqua Avenue
+email: willardwells@gmail.com
+description: >-
+  A modern tech blog and portfolio showcasing innovative projects,
+  web development insights, and cutting-edge technology solutions.
 
-title: "Aqua Avenue"
-description: "A modern portfolio + blog with a clean, Medium-style reading experience."
-author: "Willy London"
-email: "willardwells@gmail.com"
-
-# IMPORTANT (Project repo deployment)
+# IMPORTANT: GitHub Pages project site settings
 url: "https://willylondon.github.io"
 baseurl: "/aqua_avenue_jekyll"
 
+# Social media
+twitter_username: willylondon
+instagram_username: willylondon
+tiktok_username: willylondon
+github_username: willylondon
+
+# Author information
+author:
+  name: Aqua Avenue
+  email: willardwells@gmail.com
+  twitter: willylondon
+
 # Build settings
+theme: null
 markdown: kramdown
 highlighter: rouge
-permalink: /:categories/:year/:month/:day/:title/
-timezone: "America/Jamaica"
 
-# Plugins (GitHub Pages compatible)
+# Plugins
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
@@ -37,32 +45,42 @@ defaults:
       type: "posts"
     values:
       layout: "post"
-      author: "Willy London"
+      comments: true
   - scope:
       path: ""
       type: "projects"
     values:
       layout: "project"
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
 
-# Sass / Assets
-sass:
-  sass_dir: _sass
-  style: compressed
-
-# Feed
-feed:
-  path: feed.xml
-
-# SEO / Social (optional)
-twitter_username: ""
-github_username: "willylondon"
-
-# Excludes
+# Exclude from processing
 exclude:
   - Gemfile
   - Gemfile.lock
   - node_modules
-  - vendor
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
   - README.md
-  - SETUP_COMPLETE.md
-  - SETUP_COMPLETE.pdf
+
+# Pagination
+# paginate: 10
+# paginate_path: "/blog/page:num/"
+
+# Kramdown settings
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: false
+
+# Sass/SCSS settings
+sass:
+  sass_dir: _sass
+  style: compressed
