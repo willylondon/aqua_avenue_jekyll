@@ -14,30 +14,35 @@ layout: default
   </div>
 </section>
 
-<!-- Modern stats strip -->
+<!-- Modern stats strip (clickable + functional) -->
 <section class="section" style="padding-top: 0;">
   <div class="container">
     <div class="grid" style="grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px;">
-      <div class="card">
+
+      <!-- Portfolio card -->
+      <a class="card" href="{{ '/portfolio/' | relative_url }}" style="text-decoration:none;">
         <div class="card-inner" style="padding: 22px 24px;">
           <div style="font-weight: 900; font-size: 1.15rem; letter-spacing: -0.02em;">Modern Portfolio</div>
           <div style="color: var(--muted); margin-top: 6px;">Projects, case studies, and results.</div>
         </div>
-      </div>
+      </a>
 
-      <div class="card">
+      <!-- Blog card -->
+      <a class="card" href="{{ '/blog/' | relative_url }}" style="text-decoration:none;">
         <div class="card-inner" style="padding: 22px 24px;">
           <div style="font-weight: 900; font-size: 1.15rem; letter-spacing: -0.02em;">Medium-Style Blog</div>
           <div style="color: var(--muted); margin-top: 6px;">Clean reading experience + code.</div>
         </div>
-      </div>
+      </a>
 
-      <div class="card">
+      <!-- Dark mode card (toggles theme) -->
+      <button class="card" type="button" id="hero-theme-toggle" style="text-align:left; cursor:pointer;">
         <div class="card-inner" style="padding: 22px 24px;">
           <div style="font-weight: 900; font-size: 1.15rem; letter-spacing: -0.02em;">Dark Mode</div>
           <div style="color: var(--muted); margin-top: 6px;">Smooth toggle with persistence.</div>
         </div>
-      </div>
+      </button>
+
     </div>
   </div>
 </section>
