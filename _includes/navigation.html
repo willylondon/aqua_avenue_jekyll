@@ -1,0 +1,19 @@
+<nav class="site-navigation">
+  <ul class="nav-list">
+    <li class="nav-item">
+      <a href="{{ '/' | relative_url }}" class="nav-link {% if page.url == '/' %}active{% endif %}">
+        Home
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="{{ '/portfolio' | relative_url }}" class="nav-link {% if page.url == '/portfolio/' or page.layout == 'project' %}active{% endif %}">
+        Portfolio
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="{{ '/blog' | relative_url }}" class="nav-link {% if page.url == '/blog/' or page.layout == 'post' %}active{% endif %}">
+        Blog
+      </a>
+    </li>
+  </ul>
+</nav>
